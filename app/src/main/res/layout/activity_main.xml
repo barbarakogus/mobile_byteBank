@@ -7,12 +7,36 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textoBoasVindas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bem vindo (a) "
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="24dp"/>
+
+    <TextView
+        android:id="@+id/nomeCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= ""
+        app:layout_constraintStart_toEndOf="@id/textoBoasVindas"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="24dp"/>
+
+    <TextView
         android:id="@+id/label_contaCorrente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Saldo Conta Corrente:"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textoBoasVindas"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="20dp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
@@ -23,7 +47,60 @@
         android:layout_height="wrap_content"
         android:text="200.0"
         app:layout_constraintStart_toEndOf="@id/label_contaCorrente"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textoBoasVindas"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/label_contaPoupanca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saldo Poupanca:"
+        app:layout_constraintTop_toBottomOf="@id/label_contaCorrente"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/saldoContaPoupanca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="500.0"
+        app:layout_constraintStart_toEndOf="@id/label_contaPoupanca"
+        app:layout_constraintTop_toBottomOf="@id/label_contaCorrente"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/buttonContaCorrente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conta corrente"
+        app:layout_constraintStart_toStartOf="@id/label_contaCorrente"
+        app:layout_constraintTop_toBottomOf="@id/label_contaPoupanca"
+        android:layout_marginTop="16dp"></Button>
+
+    <Button
+        android:id="@+id/buttonContaPoupanca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Poupanca"
+        app:layout_constraintStart_toEndOf="@id/buttonContaCorrente"
+        app:layout_constraintTop_toBottomOf="@id/label_contaPoupanca"
+        app:layout_constraintEnd_toEndOf="@id/inputUsuario"
+        android:layout_marginTop="16dp"></Button>
+
+    <TextView
+        android:id="@+id/linha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-----------------------------------------"
+        app:layout_constraintTop_toBottomOf="@id/buttonContaCorrente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="20dp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
@@ -33,7 +110,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Informar o valor da transacao"
-        app:layout_constraintTop_toBottomOf="@id/label_contaCorrente"
+        app:layout_constraintTop_toBottomOf="@id/linha"
         app:layout_constraintStart_toStartOf="@id/label_contaCorrente"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
@@ -67,5 +144,15 @@
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"></Button>
 
+    <Button
+    android:id="@+id/buttonTransferir"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toEndOf="@id/buttonSacar"
+    app:layout_constraintTop_toBottomOf="@id/inputUsuario"
+    android:text="Transferir"
+    android:textColor="#ffffff"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="16dp"></Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
