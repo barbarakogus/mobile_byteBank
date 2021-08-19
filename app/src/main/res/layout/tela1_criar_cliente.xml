@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2">
+    tools:context=".criar_cliente">
 
     <TextView
         android:id="@+id/criar_cliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Criar Cliente"
+        android:text="@string/text_criar_cliente"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/inputClienteNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Informe seu nome"
+        android:hint="@string/input_nome_cliente"
         app:layout_constraintTop_toBottomOf="@id/criar_cliente"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp"
@@ -41,7 +41,7 @@
         android:id="@+id/inputClienteCpf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Informe seu CPF"
+        android:hint="@string/input_cpf_cliente"
         app:layout_constraintTop_toBottomOf="@id/inputClienteNome"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp"
@@ -59,7 +59,7 @@
         android:id="@+id/buttonCriarCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Criar novo cliente"
+        android:text="@string/butto_criar_cliente"
         app:layout_constraintTop_toBottomOf="@id/inputClienteCpf"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">byteBank</string>
+    <string name="bem_vindo">Bem vindo (a) </string>
+    <string name="saldo_conta_corrente">Saldo Conta Corrente:</string>
+    <string name="saldo_conta_poupanca">Saldo Poupanca:</string>
+    <string name="button_conta_corrente">Conta corrente</string>
+    <string name="butto_conta_poupanca">Conta poupanca</string>
+    <string name="espaco">-----------------------------------------</string>
+    <string name="input_valor_transacao">Informe o valor da transacao</string>
+    <string name="button_depositar">Depositar</string>
+    <string name="button_sacar">Sacar</string>
+    <string name="button_transferir">Transferir</string>
+    <string name="text_criar_cliente">Criar Cliente</string>
+    <string name="input_nome_cliente">Informe seu nome</string>
+    <string name="input_cpf_cliente">Informe seu CPF</string>
+    <string name="butto_criar_cliente">Criar novo cliente</string>
 </resources>

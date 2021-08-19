@@ -5,12 +5,16 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.text.isDigitsOnly
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
+import java.lang.NumberFormatException
 
-class MainActivity : AppCompatActivity() {
+class transacoes : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.tela2_transacoes)
 
         val saldoContaCorrente = findViewById<TextView>(R.id.saldoContaCorrente)
         val conta1 = Conta(saldoContaCorrente.text.toString().toDouble(), 1001, "contaCorrente")
@@ -21,8 +25,10 @@ class MainActivity : AppCompatActivity() {
         val nomeClienteExtra = intent.extras?.getString("nomeCliente")
         val cpfClienteExtra = intent.getStringExtra("cpfCliente")
 
+        val recylerView = findViewById<RecyclerView>(R.id.rv_lista_transacoes)
+
         if(nomeClienteExtra?.isNotEmpty() == true && cpfClienteExtra?.isNotEmpty() == true){
-            val clienteUm = MainActivity2.Cliente(
+            val clienteUm = criar_cliente.Cliente(
                 nomeClienteExtra,
                 cpfClienteExtra,
                 conta = conta1
@@ -61,30 +67,40 @@ class MainActivity : AppCompatActivity() {
 
         fun pegarEntrada (): Double {
             val entrada = inputUsuario.editText?.text.toString()
-            val entradaValorNumerico = entrada.toDouble()
-            return entradaValorNumerico
+            try {
+                val entradaValorNumerico = entrada.toDouble()
+                return entradaValorNumerico
+            } catch (e: NumberFormatException) {
+                Toast.makeText(this, "A entrada: $entrada nao é válida", Toast.LENGTH_SHORT).show()
+                return 0.0
+            }
         }
-        fun depositar () {
+
+        fun depositar () : Boolean {
             val valor = pegarEntrada()
             if (valor > 0) {
                 contaEscolhida.depositar(valor)
                 Toast.makeText(this, "Operacao realizada com sucesso", Toast.LENGTH_SHORT).show()
+                return true
             }else {
                 Toast.makeText(this, "O valor nao pode ser negativo", Toast.LENGTH_SHORT).show()
+                return false
             }
         }
-        fun sacar() {
+        fun sacar() : Boolean {
             val saldoAtual = contaEscolhida.saldo
             val valor = pegarEntrada()
             if (valor < saldoAtual) {
                 contaEscolhida.sacar(valor)
                 Toast.makeText(this, "Operacao realizada com sucesso", Toast.LENGTH_SHORT).show()
+                return true
             }else {
                 Toast.makeText(this, "Saldo näo disponível", Toast.LENGTH_SHORT).show()
+                return false
             }
         }
 
-        fun transferir() /*:Pair<Double, Double>*/ {
+        fun transferir() : Boolean {
             val saldoAtual = contaEscolhida.saldo
             //val saldoAlvo = contaAlvo.saldo
             val valor = pegarEntrada()
@@ -94,9 +110,11 @@ class MainActivity : AppCompatActivity() {
                 //val valorTransferido = saldoAlvo + valor
                 Toast.makeText(this, "Operacao realizada com sucesso", Toast.LENGTH_SHORT).show()
                 //return valorAtualizado to valorTransferido
+                return true
             }else {
                 Toast.makeText(this, "Saldo näo disponível", Toast.LENGTH_SHORT).show()
                 //return saldoAtual to valor
+                return false
             }
         }
 
@@ -111,22 +129,34 @@ class MainActivity : AppCompatActivity() {
             inputUsuario.editText?.text?.clear()
         }
 
+        fun efetuarRecyclerView(operacaoRealizadoComSucesso: Boolean) {
+            if(operacaoRealizadoComSucesso) {
+
+                val transacaoAdapter = TransacaoAdapter(contaEscolhida.listaTransacoes)
+                recylerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                recylerView.adapter = transacaoAdapter
+            }
+        }
+
         buttonDepositar.setOnClickListener {
-            depositar()
+            val operacaoRealizadaComSucesso = depositar()
             atualizarDadosDaTela()
-        }
 
+            efetuarRecyclerView(operacaoRealizadaComSucesso)
+        }
         buttonSacar.setOnClickListener {
-            sacar()
+            val operacaoRealizadaComSucesso = sacar()
             atualizarDadosDaTela()
-        }
 
+           efetuarRecyclerView(operacaoRealizadaComSucesso)
+        }
         buttonTransferir.setOnClickListener {
-            transferir()
+            val operacapRealizadaComSucesso = transferir()
             //val valorAtualizado = transferir()
             //contaEscolhida.saldo = valorAtualizado.first
             //contaAlvo.saldo = valorAtualizado.second
             atualizarDadosDaTela()
+            efetuarRecyclerView(operacapRealizadaComSucesso)
         }
     }
 }

@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".transacoes">
 
     <TextView
         android:id="@+id/textoBoasVindas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bem vindo (a) "
+        android:text="@string/bem_vindo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="20dp"
@@ -34,7 +34,7 @@
         android:id="@+id/label_contaCorrente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saldo Conta Corrente:"
+        android:text="@string/saldo_conta_corrente"
         app:layout_constraintTop_toBottomOf="@id/textoBoasVindas"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="20dp"
@@ -56,7 +56,7 @@
         android:id="@+id/label_contaPoupanca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saldo Poupanca:"
+        android:text="@string/saldo_conta_poupanca"
         app:layout_constraintTop_toBottomOf="@id/label_contaCorrente"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="20dp"
@@ -78,26 +78,28 @@
         android:id="@+id/buttonContaCorrente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Conta corrente"
+        android:text="@string/button_conta_corrente"
         app:layout_constraintStart_toStartOf="@id/label_contaCorrente"
         app:layout_constraintTop_toBottomOf="@id/label_contaPoupanca"
-        android:layout_marginTop="16dp"></Button>
+        android:layout_marginTop="16dp">
+    </Button>
 
     <Button
         android:id="@+id/buttonContaPoupanca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Poupanca"
+        android:text="@string/butto_conta_poupanca"
         app:layout_constraintStart_toEndOf="@id/buttonContaCorrente"
         app:layout_constraintTop_toBottomOf="@id/label_contaPoupanca"
         app:layout_constraintEnd_toEndOf="@id/inputUsuario"
-        android:layout_marginTop="16dp"></Button>
+        android:layout_marginTop="16dp">
+    </Button>
 
     <TextView
         android:id="@+id/linha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="-----------------------------------------"
+        android:text="@string/espaco"
         app:layout_constraintTop_toBottomOf="@id/buttonContaCorrente"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +111,7 @@
         android:id="@+id/inputUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Informar o valor da transacao"
+        android:hint="@string/input_valor_transacao"
         app:layout_constraintTop_toBottomOf="@id/linha"
         app:layout_constraintStart_toStartOf="@id/label_contaCorrente"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,9 +131,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/label_contaCorrente"
         app:layout_constraintTop_toBottomOf="@id/inputUsuario"
-        android:text="Depositar"
+        android:text="@string/button_depositar"
         android:textColor="#ffffff"
-        android:layout_marginTop="16dp"></Button>
+        android:layout_marginTop="16dp">
+    </Button>
 
     <Button
         android:id="@+id/buttonSacar"
@@ -139,10 +142,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/buttonDepositar"
         app:layout_constraintTop_toBottomOf="@id/inputUsuario"
-        android:text="Sacar"
+        android:text="@string/button_sacar"
         android:textColor="#ffffff"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"></Button>
+        android:layout_marginLeft="16dp">
+    </Button>
 
     <Button
     android:id="@+id/buttonTransferir"
@@ -150,9 +154,22 @@
     android:layout_height="wrap_content"
     app:layout_constraintStart_toEndOf="@id/buttonSacar"
     app:layout_constraintTop_toBottomOf="@id/inputUsuario"
-    android:text="Transferir"
+    android:text="@string/button_transferir"
     android:textColor="#ffffff"
     android:layout_marginTop="16dp"
-    android:layout_marginLeft="16dp"></Button>
+    android:layout_marginLeft="16dp">
+    </Button>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_lista_transacoes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonDepositar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/layout_linha_transacao"
+        >
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
